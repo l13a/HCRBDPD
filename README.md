@@ -5,7 +5,8 @@ This is the source code repository for *Human Brain Cell State Dynamics in Prodr
 
 ## System Requirements
 
-The main language required to replicate the analysis pipeline is R. Python is also required to reproduce proportion test results as well as TF-gene networks. We used:
+The main language required to replicate the analysis pipeline is R. 
+Python is also required to reproduce proportion test results and TF-gene networks. We used:
 
 - R 4.3.0
 - Python 3.9.23
