@@ -1,0 +1,319 @@
+```{r}
+library(monocle3)
+library(Seurat)
+library(RColorBrewer)
+library(ggplot2)
+library(matrixStats)
+```
+
+# Set up
+```{r}
+counts <- readRDS("../../data/c0_counts_v5.rds")
+meta_data <- readRDS("../../data/c0_metadata_v5.rds")
+
+meta_data["clusters"] = meta_data["seurat_clusters"]
+
+gene_annotation <- data.frame(gene_short_name = rownames(counts))
+rownames(gene_annotation) <- rownames(counts)
+
+cds <- new_cell_data_set(counts,
+                         cell_metadata = meta_data,
+                         gene_metadata = gene_annotation)
+```
+
+```{r}
+cds <- preprocess_cds(cds, num_dim = 30)
+```
+
+```{r}
+cds <- reduce_dimension(cds, reduction_method = "UMAP")
+```
+
+```{r}
+plot_cells(cds)
+```
+
+```{r}
+cds$seurat_clusters_S <- paste0("S", cds$seurat_clusters)
+# Plot with custom colors and label the clusters correctly
+plot_cells(
+  cds,
+  label_groups_by_cluster = FALSE,
+  color_cells_by = "seurat_clusters_S",  # Keep the cluster numbers for labels
+  cell_size = 0.5,
+  group_label_size = 5
+)
+```
+
+```{r}
+# Extract UMAP coordinates and metadata from cds
+umap_coords <- reducedDims(cds)$UMAP
+metadata <- colData(cds)
+
+# Combine UMAP coordinates and metadata into a data frame
+plot_data <- data.frame(UMAP1 = umap_coords[, 1], UMAP2 = umap_coords[, 2],
+                        Cluster = metadata$seurat_clusters_S)
+
+# Define a custom color palette for clusters
+cluster_colors <- brewer.pal(9, "Set1")
+names(cluster_colors) <- unique(plot_data$Cluster)  # Adjust this if cluster names are known
+
+# Plot with ggplot2
+ggplot(plot_data, aes(x = UMAP1, y = UMAP2, color = Cluster)) +
+  geom_point(size = 1.0) +
+  scale_color_manual(values = cluster_colors) +
+  theme_minimal() +
+  theme(legend.position = "right") +
+  labs(color = "Cluster") +
+  ggtitle("UMAP with Cluster Colors")
+```
+
+```{r}
+plot_cells(cds,
+           color_cells_by = "disease",
+           cell_size = 0.5,
+           group_label_size = 5)
+```
+
+```{r}
+cds <- cluster_cells(cds)
+pdf("../../man_figs_pdf/mic_MG0_partition.pdf", width = 8, height = 5)  # Adjust size as needed
+plot_cells(cds, color_cells_by = "partition", cell_size = 1.0,
+           group_label_size = 5)
+dev.off()
+
+plot_cells(cds, color_cells_by = "cluster", cell_size = 0.5,
+           group_label_size = 5)
+```
+
+```{r}
+cds <- learn_graph(cds)
+plot_cells(cds,
+           color_cells_by = "seurat_clusters_S",
+           label_groups_by_cluster=FALSE,
+           label_leaves=FALSE,
+           label_branch_points=FALSE,
+           cell_size = 0.5,
+           group_label_size = 5)
+
+plot_cells(cds,
+           color_cells_by = "disease",
+           label_cell_groups=FALSE,
+           label_leaves=TRUE,
+           label_branch_points=TRUE,
+           graph_label_size=2.5,
+           cell_size = 0.5,
+           group_label_size = 5)
+
+```
+
+```{r}
+# try to pick root nodes manually
+cds <- order_cells(cds)
+plot_cells(cds,
+           color_cells_by = "pseudotime",
+           label_cell_groups=FALSE,
+           label_leaves=FALSE,
+           label_branch_points=FALSE,
+           cell_size = 0.5,
+           group_label_size = 5)
+```
+
+```{r}
+# pick root nodes automatically
+get_earliest_principal_node_by_partition <- function(cds, time_bin="HC", partition = 2) {
+  # Initialize a named vector to store root nodes for each partition
+  root_pr_nodes <- c()
+  
+  # Loop over each partition in cds
+  partitions <- unique(cds@clusters[["UMAP"]]$partitions)
+  
+  # for (partition in partitions) {
+  # Get cell IDs for the current partition
+  partition_cells <- which(cds@clusters[["UMAP"]]$partitions == partition)
+    
+  # Get cell IDs with disease == time_bin within the current partition
+  cell_ids <- partition_cells[colData(cds)[partition_cells, "disease"] == time_bin]
+    
+  # Identify the closest vertices in the principal graph for these cells
+  closest_vertex <- cds@principal_graph_aux[["UMAP"]]$pr_graph_cell_proj_closest_vertex
+  closest_vertex <- as.matrix(closest_vertex[colnames(cds), ])
+    
+  # Calculate the root node by finding the vertex with the highest cell count for each partition
+  if (length(cell_ids) > 0) {
+    node_counts <- table(closest_vertex[cell_ids, ])
+    max_node <- which.max(node_counts)
+    root_pr_node <- igraph::V(principal_graph(cds)[["UMAP"]])$name[as.numeric(names(max_node))]
+    root_pr_nodes[as.character(partition)] <- root_pr_node
+  } else {
+    warning(paste("No cells with disease == ", time_bin, " in partition ", partition, sep=""))
+  }
+  # }
+  
+  return(root_pr_nodes)
+}
+
+get_earliest_principal_node_by_partition(cds)
+cds <- order_cells(cds, root_pr_nodes=get_earliest_principal_node_by_partition(cds))
+```
+
+
+```{r}
+pdf("../../man_figs_pdf/mic_MG0_pseudotime_island.pdf", width = 8, height =5) 
+plot_cells(cds,
+           color_cells_by = "pseudotime",
+           label_cell_groups=FALSE,
+           label_leaves=FALSE,
+           label_branch_points=FALSE,
+           graph_label_size=1.5,
+           cell_size = 0.8) +
+  scale_color_gradientn(colors = c('#7a0177','#ae017e','#dd3497', '#f768a1', '#fa9fb5','#fcc5c0'))
+dev.off()
+```
+
+# Identify pseudotime dependent genes
+```{r}
+ciliated_cds_pr_test_res <- graph_test(cds, neighbor_graph="principal_graph", cores=4)
+pr_deg_ids <- row.names(subset(ciliated_cds_pr_test_res, q_value < 0.05))
+```
+
+```{r}
+library(dplyr)
+graph_test_results <- subset(ciliated_cds_pr_test_res, q_value < 0.05) %>% arrange(q_value)
+graph_test_results
+```
+
+```{r}
+head(pr_deg_ids)
+```
+```{r}
+write.csv(pr_deg_ids, "../../data/pr_deg_ids_c0.csv", row.names = FALSE, quote = FALSE)
+```
+
+```{r}
+write.csv(graph_test_results, "../../data/graph_test_res_c0.csv", row.names = TRUE, quote = FALSE)
+```
+
+```{r}
+print(head(graph_test_results$gene_short_name, 20) %>% as.array())
+```
+
+```{r}
+plot_cells(cds, genes=c("RPS8", "SPATA6", "IFI44L", "DPYD", "NIBAN1", "RGS1", "DTL", "RPS27A", "TMSB10", "TBC1D8", "TMEM163", "SLC11A1", "RPL32", "THRB", "ERC2", "POLQ", "ATP2C1", "BCL6", "TPRG1", "TBC1D14"),
+            show_trajectory_graph=FALSE,
+            label_cell_groups=FALSE,
+            label_leaves=FALSE)
+```
+
+```{r}
+plot_cells(cds, genes=c("RPS8", "SPATA6", "IFI44L", "DPYD", "NIBAN1", "RGS1", "DTL", "RPS27A", "TMSB10", "TBC1D8", "TMEM163", "SLC11A1", "RPL32", "THRB", "ERC2", "POLQ", "ATP2C1", "BCL6", "TPRG1", "TBC1D14"),
+            show_trajectory_graph=FALSE,
+            label_cell_groups=FALSE,
+            label_leaves=FALSE)
+```
+
+# Grouping pseudotime dependent genes into gene modules
+```{r}
+set.seed(384)
+gene_module_df <- find_gene_modules(cds[pr_deg_ids,], resolution=c(10^seq(-6,-1)))
+```
+
+```{r}
+gene_module_df
+```
+
+
+```{r}
+write.csv(gene_module_df, "../../data/gene_module_df_c0.csv", row.names = TRUE, quote = FALSE)
+```
+
+
+```{r}
+graph_test_results <- read.csv("../../data/graph_test_res_c0.csv", row.names = 1, stringsAsFactors = FALSE)
+```
+
+```{r}
+gene_module_df <- read.csv("../../data/gene_module_df_c0.csv", row.names = 1, stringsAsFactors = FALSE)
+```
+
+```{r}
+gene_module_df[gene_module_df$module == 2,]
+```
+
+```{r}
+ set.seed(384)
+ cell_group_df <- tibble::tibble(cell=row.names(colData(cds)),
+                                 cell_group=colData(cds)$seurat_clusters_S)
+ agg_mat <- aggregate_gene_expression(cds, gene_module_df, cell_group_df)
+ row.names(agg_mat) <- stringr::str_c("Module ", row.names(agg_mat))
+ pheatmap::pheatmap(agg_mat,
+                    scale="column", clustering_method="ward.D2", cluster_cols = FALSE, fontsize_row = 10)
+```
+
+```{r}
+cell_group_df <- tibble::tibble(
+  cell = row.names(colData(cds)),
+  cell_group = factor(colData(cds)$disease, levels = c("HC", "RBD", "PD"))
+)
+
+agg_mat <- aggregate_gene_expression(cds, gene_module_df, cell_group_df)
+row.names(agg_mat) <- stringr::str_c("Module ", row.names(agg_mat))
+
+pheatmap::pheatmap(
+  agg_mat,
+  scale = "column", clustering_method = "ward.D2", fontsize_row = 10, cluster_cols = FALSE
+)
+```
+
+
+```{r}
+library(dplyr)
+pdf("../../man_figs_pdf/mic_MG0_gene_module_umap2.pdf", width = 16, height =10) 
+plot_cells(cds,
+            genes=gene_module_df %>% filter(module %in% c(6, 2, 10, 16)),
+            label_cell_groups=FALSE,
+            show_trajectory_graph=FALSE,
+            cell_size = 0.8)
+dev.off()
+```
+
+```{r}
+gene_module_df %>% filter(module %in% c(2,6))
+```
+
+```{r}
+ AFD_genes <- c("SKI", "LZIC", "PGD","FBXO6", "PRDM2")
+ AFD_lineage_cds <- cds[rowData(cds)$gene_short_name %in% AFD_genes,
+                        colData(cds)$seurat_clusters_S %in% c("S0")]
+ AFD_lineage_cds <- order_cells(AFD_lineage_cds)
+```
+
+clearer view of a gene's dynamics along a single path (path = S0 cells)
+
+
+```{r}
+ plot_genes_in_pseudotime(AFD_lineage_cds,
+                          color_cells_by="disease",
+                          min_expr=0.5)
+```
+
+
+
+# 3D
+```{r}
+cds_3d <- reduce_dimension(cds, max_components = 3)
+cds_3d <- cluster_cells(cds_3d)
+cds_3d <- learn_graph(cds_3d)
+cds_3d <- order_cells(cds_3d, root_pr_nodes=get_earliest_principal_node_by_partition(cds_3d))
+
+cds_3d_plot_obj <- plot_cells_3d(cds_3d, color_cells_by="partition")
+```
+
+```{r}
+cds_3d_plot_obj
+```
+
+```{r}
+plot_cells_3d(cds_3d, color_cells_by="disease")
+```
+

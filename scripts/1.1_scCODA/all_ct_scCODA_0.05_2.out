@@ -1,0 +1,318 @@
+Compositional Analysis summary:
+
+Data: 36 samples, 8 cell types
+Reference index: 0
+Formula: disease + batch
+
+Intercepts:
+                                 Final Parameter  Expected Sample
+Cell Type                                                        
+astrocytes                                 2.358      1152.506010
+endothelia cells                          -0.036       105.182190
+excitatory neurons                         2.724      1661.862083
+inhibitory neurons                         2.331      1121.804681
+microglia                                  1.274       389.823468
+oligodendrocyte precursor cells            1.063       315.668935
+oligodendrocytes                           2.720      1655.227912
+pericytes                                 -1.633        21.299721
+
+
+Effects:
+                                                         Final Parameter  Expected Sample  log2-fold change
+Covariate               Cell Type                                                                          
+disease[T.PD]           astrocytes                              0.000000      1296.694959          0.170065
+                        endothelia cells                        0.000000       118.341435          0.170065
+                        excitatory neurons                     -0.561761      1066.153656         -0.640385
+                        inhibitory neurons                      0.000000      1262.152615          0.170065
+                        microglia                               0.000000       438.593917          0.170065
+                        oligodendrocyte precursor cells         0.000000       355.161980          0.170065
+                        oligodendrocytes                        0.000000      1862.311928          0.170065
+                        pericytes                               0.000000        23.964510          0.170065
+disease[T.RBD]          astrocytes                              0.000000      1142.868052         -0.012115
+                        endothelia cells                        0.000000       104.302592         -0.012115
+                        excitatory neurons                      0.018613      1678.925533          0.014738
+                        inhibitory neurons                      0.000000      1112.423466         -0.012115
+                        microglia                               0.057198       409.318752          0.070404
+                        oligodendrocyte precursor cells         0.000000       313.029119         -0.012115
+                        oligodendrocytes                        0.000000      1641.385886         -0.012115
+                        pericytes                               0.000000        21.121600         -0.012115
+batch[T.HC0772PFC_MAH]  astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
+batch[T.HC0931PFC_MAH]  astrocytes                              0.000000       337.945163         -1.769913
+                        endothelia cells                       -1.195952         9.327171         -3.495307
+                        excitatory neurons                     -2.817930        29.106282         -5.835326
+                        inhibitory neurons                     -0.626355       175.831876         -2.673553
+                        microglia                               0.000000       114.306523         -1.769913
+                        oligodendrocyte precursor cells        -2.101670        11.315954         -4.801982
+                        oligodendrocytes                        2.470208      5739.296392          1.793844
+                        pericytes                               0.000000         6.245640         -1.769913
+batch[T.HC1073PFC_MAH]  astrocytes                              0.000000       965.586774         -0.255296
+                        endothelia cells                        0.000000        88.123212         -0.255296
+                        excitatory neurons                      0.000000      1392.332911         -0.255296
+                        inhibitory neurons                      0.000000       939.864741         -0.255296
+                        microglia                               0.000000       326.599932         -0.255296
+                        oligodendrocyte precursor cells         0.000000       264.472155         -0.255296
+                        oligodendrocytes                        0.560314      2428.550051          0.553065
+                        pericytes                               0.000000        17.845225         -0.255296
+batch[T.HC1074PFC_MAH]  astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
+batch[T.HC1094PFC_MAH]  astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
+batch[T.HC1419PFC_MAH]  astrocytes                              0.000000       911.300871         -0.338775
+                        endothelia cells                        0.000000        83.168869         -0.338775
+                        excitatory neurons                      0.734084      2737.929268          0.720285
+                        inhibitory neurons                      0.699878      1786.031287          0.670936
+                        microglia                              -0.433771       199.757146         -0.964574
+                        oligodendrocyte precursor cells         0.000000       249.603362         -0.338775
+                        oligodendrocytes                       -1.092961       438.742240         -1.915584
+                        pericytes                               0.000000        16.841955         -0.338775
+batch[T.HC1611PFC_MAH]  astrocytes                              0.000000      1238.104386          0.103359
+                        endothelia cells                        0.000000       112.994231          0.103359
+                        excitatory neurons                      0.000000      1785.291111          0.103359
+                        inhibitory neurons                      0.000000      1205.122822          0.103359
+                        microglia                               0.000000       418.776250          0.103359
+                        oligodendrocyte precursor cells         0.000000       339.114147          0.103359
+                        oligodendrocytes                       -0.312379      1301.090368         -0.347309
+                        pericytes                               0.000000        22.881684          0.103359
+batch[T.HC1719PFC_MAH]  astrocytes                              0.000000       406.685381         -1.502789
+                        endothelia cells                        0.000000        37.115693         -1.502789
+                        excitatory neurons                     -3.911798        11.731086         -7.146320
+                        inhibitory neurons                     -2.223015        42.863672         -4.709922
+                        microglia                               0.000000       137.557205         -1.502789
+                        oligodendrocyte precursor cells         0.000000       111.390257         -1.502789
+                        oligodendrocytes                        2.272624      5668.407739          1.775914
+                        pericytes                               0.014257         7.623968         -1.482221
+batch[T.HC1817PFC_MAH]  astrocytes                              0.000000       704.212231         -0.710692
+                        endothelia cells                       -1.326510        17.057151         -2.624442
+                        excitatory neurons                     -1.052757       354.363441         -2.229499
+                        inhibitory neurons                      0.000000       685.452892         -0.710692
+                        microglia                               0.000000       238.192644         -0.710692
+                        oligodendrocyte precursor cells        -2.329326        18.779272         -4.071199
+                        oligodendrocytes                        1.468529      4392.302665          1.407948
+                        pericytes                               0.000000        13.014704         -0.710692
+batch[T.HC1821PFC_MAH]  astrocytes                              0.000000      1174.655063          0.027463
+                        endothelia cells                        0.000000       107.203599          0.027463
+                        excitatory neurons                     -0.075313      1570.919747         -0.081191
+                        inhibitory neurons                      0.000000      1143.363711          0.027463
+                        microglia                               0.000000       397.315160          0.027463
+                        oligodendrocyte precursor cells         0.000000       321.735513          0.027463
+                        oligodendrocytes                        0.000000      1687.038359          0.027463
+                        pericytes                              -0.026381        21.143847         -0.010597
+batch[T.HC1855PFC_MAH]  astrocytes                              0.000000      1164.692434          0.015175
+                        endothelia cells                        0.000000       106.294371          0.015175
+                        excitatory neurons                      0.000000      1679.434362          0.015175
+                        inhibitory neurons                     -0.063470      1063.948461         -0.076393
+                        microglia                               0.000000       393.945402          0.015175
+                        oligodendrocyte precursor cells         0.000000       319.006770          0.015175
+                        oligodendrocytes                        0.000000      1672.730042          0.015175
+                        pericytes                               0.080234        23.323158          0.130929
+batch[T.HC1860PFC_MAH]  astrocytes                              0.000000      1007.206595         -0.194415
+                        endothelia cells                        0.000000        91.921599         -0.194415
+                        excitatory neurons                      0.000000      1452.346830         -0.194415
+                        inhibitory neurons                      0.000000       980.375862         -0.194415
+                        microglia                               0.000000       340.677414         -0.194415
+                        oligodendrocyte precursor cells         0.000000       275.871735         -0.194415
+                        oligodendrocytes                        0.444572      2256.360554          0.446968
+                        pericytes                               0.000000        18.614410         -0.194415
+batch[T.HC1915PFC_MAH]  astrocytes                              0.000000      1147.967381         -0.005693
+                        endothelia cells                        0.216275       130.063564          0.306326
+                        excitatory neurons                      0.000000      1655.317583         -0.005693
+                        inhibitory neurons                      0.000000      1117.386955         -0.005693
+                        microglia                               0.000000       388.288322         -0.005693
+                        oligodendrocyte precursor cells         0.000000       314.425814         -0.005693
+                        oligodendrocytes                        0.000000      1648.709538         -0.005693
+                        pericytes                               0.000000        21.215842         -0.005693
+batch[T.HC1943PFC_MAH]  astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
+batch[T.HC2029PFC_MAH]  astrocytes                              0.000000      1056.069209         -0.126070
+                        endothelia cells                        0.000000        96.380992         -0.126070
+                        excitatory neurons                      0.000000      1522.804532         -0.126070
+                        inhibitory neurons                      0.000000      1027.936836         -0.126070
+                        microglia                              -0.187394       296.164361         -0.396423
+                        oligodendrocyte precursor cells         0.185049       348.053952          0.140899
+                        oligodendrocytes                        0.304426      2056.447667          0.313124
+                        pericytes                               0.000000        19.517451         -0.126070
+batch[T.HC2070PFC_MAH]  astrocytes                              0.000000      1145.133664         -0.009258
+                        endothelia cells                        0.000000       104.509361         -0.009258
+                        excitatory neurons                      0.000000      1651.231490         -0.009258
+                        inhibitory neurons                      0.000000      1114.628725         -0.009258
+                        microglia                               0.000000       387.329846         -0.009258
+                        oligodendrocyte precursor cells         0.000000       313.649665         -0.009258
+                        oligodendrocytes                        0.024677      1685.728778          0.026343
+                        pericytes                               0.000000        21.163471         -0.009258
+batch[T.HC2204PFC_MAH]  astrocytes                              0.000000       881.929908         -0.386038
+                        endothelia cells                        0.000000        80.488360         -0.386038
+                        excitatory neurons                      0.000000      1271.703454         -0.386038
+                        inhibitory neurons                      0.000000       858.436390         -0.386038
+                        microglia                               0.000000       298.303846         -0.386038
+                        oligodendrocyte precursor cells         0.000000       241.558718         -0.386038
+                        oligodendrocytes                        0.784169      2774.655180          0.745279
+                        pericytes                               0.000000        16.299144         -0.386038
+batch[T.PD0009PFC_MAH]  astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
+batch[T.PD0237PFC_MAH]  astrocytes                              0.000000       347.624791         -1.729171
+                        endothelia cells                        0.000000        31.725593         -1.729171
+                        excitatory neurons                     -3.346595        17.646348         -6.557287
+                        inhibitory neurons                     -3.633308         8.942500         -6.970928
+                        microglia                               0.000000       117.580560         -1.729171
+                        oligodendrocyte precursor cells         0.000000        95.213688         -1.729171
+                        oligodendrocytes                        2.452182      5798.216988          1.808579
+                        pericytes                               0.000000         6.424532         -1.729171
+batch[T.PD0348PFC_MAH]  astrocytes                              0.000000      1145.229961         -0.009137
+                        endothelia cells                        0.000000       104.518149         -0.009137
+                        excitatory neurons                      0.000000      1651.370346         -0.009137
+                        inhibitory neurons                      0.042093      1162.646595          0.051591
+                        microglia                               0.000000       387.362418         -0.009137
+                        oligodendrocyte precursor cells        -0.017651       308.187809         -0.034602
+                        oligodendrocytes                        0.000000      1644.778058         -0.009137
+                        pericytes                              -0.093206        19.281664         -0.143605
+batch[T.PD0417PFC_MAH]  astrocytes                              0.000000       455.377466         -1.339639
+                        endothelia cells                        0.283674        55.191061         -0.930384
+                        excitatory neurons                      0.000000       656.633924         -1.339639
+                        inhibitory neurons                     -1.021105       159.656027         -2.812783
+                        microglia                               0.000000       154.026809         -1.339639
+                        oligodendrocyte precursor cells         0.000000       124.726915         -1.339639
+                        oligodendrocytes                        1.995190      4809.346865          1.538811
+                        pericytes                               0.000000         8.415933         -1.339639
+batch[T.PD0517PFC_MAH]  astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
+batch[T.PD11110PFC_MAH] astrocytes                              0.000000       583.669609         -0.981550
+                        endothelia cells                        0.000000        53.267963         -0.981550
+                        excitatory neurons                      0.000000       841.625453         -0.981550
+                        inhibitory neurons                     -0.289710       425.227740         -1.399514
+                        microglia                               0.000000       197.420325         -0.981550
+                        oligodendrocyte precursor cells         0.000000       159.865859         -0.981550
+                        oligodendrocytes                        1.599893      4151.511122          1.326607
+                        pericytes                               0.000000        10.786929         -0.981550
+batch[T.PD1317PFC_MAH]  astrocytes                              0.000000      1156.515123          0.005010
+                        endothelia cells                        0.000000       105.548077          0.005010
+                        excitatory neurons                      0.000000      1667.643046          0.005010
+                        inhibitory neurons                      0.000000      1125.706996          0.005010
+                        microglia                              -0.058817       368.835123         -0.079845
+                        oligodendrocyte precursor cells         0.000000       316.767022          0.005010
+                        oligodendrocytes                        0.000000      1660.985797          0.005010
+                        pericytes                               0.000000        21.373815          0.005010
+batch[T.PD1318PFC_MAH]  astrocytes                              0.000000       896.627186         -0.362194
+                        endothelia cells                        0.000000        81.829691         -0.362194
+                        excitatory neurons                      0.743383      2719.010866          0.710281
+                        inhibitory neurons                      0.000000       872.742151         -0.362194
+                        microglia                               0.000000       303.275051         -0.362194
+                        oligodendrocyte precursor cells         0.000000       245.584271         -0.362194
+                        oligodendrocytes                        0.000000      1287.735016         -0.362194
+                        pericytes                               0.000000        16.570768         -0.362194
+batch[T.PD9909PFC_MAH]  astrocytes                              0.000000       707.822170         -0.703315
+                        endothelia cells                        0.000000        64.598610         -0.703315
+                        excitatory neurons                      1.531141      4718.913624          1.505654
+                        inhibitory neurons                      0.000000       688.966666         -0.703315
+                        microglia                              -2.329110        23.314682         -4.063510
+                        oligodendrocyte precursor cells        -2.471599        16.372342         -4.269080
+                        oligodendrocytes                       -1.675562       190.305487         -3.120641
+                        pericytes                               0.000000        13.081420         -0.703315
+batch[T.RBD1042PFC_MAH] astrocytes                              0.000000       408.366799         -1.496837
+                        endothelia cells                        0.000000        37.269146         -1.496837
+                        excitatory neurons                     -4.180439         9.004521         -7.527935
+                        inhibitory neurons                      0.000000       397.488415         -1.496837
+                        microglia                               0.000000       138.125928         -1.496837
+                        oligodendrocyte precursor cells         0.000000       111.850794         -1.496837
+                        oligodendrocytes                        2.203882      5313.722279          1.682693
+                        pericytes                               0.000000         7.547118         -1.496837
+batch[T.RBD1405PFC_MAH] astrocytes                              0.000000      1179.620667          0.033549
+                        endothelia cells                        0.000000       107.656779          0.033549
+                        excitatory neurons                      0.000000      1700.960205          0.033549
+                        inhibitory neurons                      0.000000      1148.197037          0.033549
+                        microglia                               0.000000       398.994725          0.033549
+                        oligodendrocyte precursor cells        -0.630600       171.974800         -0.876215
+                        oligodendrocytes                        0.000000      1694.169954          0.033549
+                        pericytes                               0.000000        21.800833          0.033549
+batch[T.RBD1430PFC_MAH] astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
+batch[T.RBD1546PFC_MAH] astrocytes                              0.000000       752.568161         -0.614880
+                        endothelia cells                        0.000000        68.682303         -0.614880
+                        excitatory neurons                     -1.830035       174.069872         -3.255062
+                        inhibitory neurons                     -1.580178       150.854199         -2.894595
+                        microglia                               0.000000       254.548547         -0.614880
+                        oligodendrocyte precursor cells         0.000000       206.126812         -0.614880
+                        oligodendrocytes                        1.491425      4802.616724          1.536791
+                        pericytes                               0.000000        13.908380         -0.614880
+batch[T.RBD1585PFC_MAH] astrocytes                              0.000000      1105.377444         -0.060235
+                        endothelia cells                        0.000000       100.881053         -0.060235
+                        excitatory neurons                      0.000000      1593.904801         -0.060235
+                        inhibitory neurons                      0.000000      1075.931561         -0.060235
+                        microglia                               0.000000       373.882708         -0.060235
+                        oligodendrocyte precursor cells         0.000000       302.760521         -0.060235
+                        oligodendrocytes                        0.153111      1850.208183          0.160658
+                        pericytes                               0.000000        20.428728         -0.060235
+batch[T.RBD1762PFC_MAH] astrocytes                              0.000000       302.093938         -1.931705
+                        endothelia cells                       -1.750661         4.787831         -4.457374
+                        excitatory neurons                     -1.293941       119.437996         -3.798467
+                        inhibitory neurons                      0.000000       294.046531         -1.931705
+                        microglia                               0.000000       102.180210         -1.931705
+                        oligodendrocyte precursor cells        -1.800392        13.671944         -4.529122
+                        oligodendrocytes                        2.554488      5581.573485          1.753642
+                        pericytes                               0.000000         5.583066         -1.931705
+batch[T.RBD1820PFC_MAH] astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
+batch[T.RBD1835PFC_MAH] astrocytes                              0.000000      1110.546293         -0.053505
+                        endothelia cells                        0.000000       101.352783         -0.053505
+                        excitatory neurons                      0.136310      1835.216263          0.143149
+                        inhibitory neurons                      0.000000      1080.962719         -0.053505
+                        microglia                               0.000000       375.631019         -0.053505
+                        oligodendrocyte precursor cells         0.000000       304.176258         -0.053505
+                        oligodendrocytes                        0.000000      1594.965411         -0.053505
+                        pericytes                               0.000000        20.524254         -0.053505
+batch[T.RBD1848PFC_MAH] astrocytes                              0.000000      1152.506010          0.000000
+                        endothelia cells                        0.000000       105.182190          0.000000
+                        excitatory neurons                      0.000000      1661.862083          0.000000
+                        inhibitory neurons                      0.000000      1121.804681          0.000000
+                        microglia                               0.000000       389.823468          0.000000
+                        oligodendrocyte precursor cells         0.000000       315.668935          0.000000
+                        oligodendrocytes                        0.000000      1655.227912          0.000000
+                        pericytes                               0.000000        21.299721          0.000000
