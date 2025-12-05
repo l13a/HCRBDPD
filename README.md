@@ -39,7 +39,7 @@ conda env create -f environment.yml
 ├── Annotate_Mic_Subtype      # Marker genes for Mic subtypes
 ├── DEG_GO_Analysis           # DEGs and GO results
 ├── data                      # intermediate saved data 
-├── scripts                   # notebooks to reproduce all analysis, divded into sections from the paper
+├── scripts                   # notebooks to reproduce all analysis, divided into sections from paper
 ├── environment.yaml          # Reproducible environment via conda
 ├── LICENSE
 └── README.md
