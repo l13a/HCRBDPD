@@ -29,7 +29,21 @@ and create a virtual environment with `conda` using the supported `environment.y
 conda env create -f environment.yml
 ``` 
 
-## Usage
+## Directory structure
+
+```
+.
+├── Annotate_All              # Marker genes for all cell types
+├── Annotate_Exc_Subtype      # Marker genes for Exc neuron subtypes
+├── Annotate_Inh_Subtype      # Marker genes for Inh neurons subtypes
+├── Annotate_Mic_Subtype      # Marker genes for Mic subtypes
+├── DEG_GO_Analysis           # DEGs and GO results
+├── data                      # intermediate saved data 
+├── scripts                   # notebooks to reproduce all analysis, divded into sections from the paper
+├── environment.yaml          # Reproducible environment via conda
+├── LICENSE
+└── README.md
+```
 
 
 ## Cite Our Work
