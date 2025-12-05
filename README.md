@@ -18,7 +18,7 @@ Please use the attached `environment.yml` for the full list of system requiremen
 To download and install the pipeline, simply clone this repository:
 
 ```
-git clone 
+git clone https://github.com/l13a/HCRBDPD.git
 ```
 
 and create a virtual environment with `conda` using the supported `environment.yml`:
