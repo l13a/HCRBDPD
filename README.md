@@ -7,7 +7,7 @@ This is the source code repository for *Human Brain Cell State Dynamics in Prodr
 
 R is required to replicate the analysis pipeline. We used:
 
-- R 4.2.3
+- R 4.3.0
 
 in our analyses.
 
