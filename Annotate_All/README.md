@@ -8,6 +8,6 @@ Below, we list the associated files in this directory.
 ## Marker gene list for all 9 cell types
 - Significant marker genes (adjusted p-value < 0.05) for each of the 9 cell types: `significant_celltype_markers.csv`
 
-We also took all cells from the snRNA dataset, performed clustering using Seurat, obtained 36 clusters, and reran marker gene identification for each cluster. 
 ## Marker gene list for 36 clusters obtained from Seurat clustering
+We also took all cells from the snRNA dataset, performed clustering using Seurat, obtained 36 clusters, and reran marker gene identification for each cluster. 
 - Significant marker genes (adjusted p-value < 0.05) for each of the 36 clusters from Seurat: `36_clusters/Marker_Genes.xlsx`
